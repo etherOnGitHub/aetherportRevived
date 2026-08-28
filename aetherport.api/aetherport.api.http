@@ -1,0 +1,6 @@
+@aetherport.api_HostAddress = http://localhost:5140
+
+GET {{aetherport.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
