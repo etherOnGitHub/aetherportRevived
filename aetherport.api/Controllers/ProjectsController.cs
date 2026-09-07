@@ -14,12 +14,12 @@ public sealed class ProjectsController(AppDbContext dbContext) : ControllerBase
     public async Task<ActionResult<IReadOnlyList<ResponseProject>>> GetAllProjects(
         CancellationToken cancellationToken)
     {
-        var projects = await dbContext.Projects
+        var project = await dbContext.Project
             .AsNoTracking()
             .OrderByDescending(p => p.CreatedAt)
             .Select(p => ToResponse(p))
             .ToListAsync(cancellationToken);
-        return Ok(projects);
+        return Ok(project);
     }
 
     [HttpGet("{id:int}")]
@@ -27,7 +27,7 @@ public sealed class ProjectsController(AppDbContext dbContext) : ControllerBase
         int id,
         CancellationToken cancellationToken)
     {
-        var project = await dbContext.Projects
+        var project = await dbContext.Project
             .AsNoTracking()
             .FirstOrDefaultAsync(
                 p => p.Id == id,
@@ -51,7 +51,7 @@ public sealed class ProjectsController(AppDbContext dbContext) : ControllerBase
         // trim and convert to lowercase for consistency
         var slug = request.Slug.Trim().ToLowerInvariant();
         // check if slug already exists in the database
-        var slugExists = await dbContext.Projects.AnyAsync(
+        var slugExists = await dbContext.Project.AnyAsync(
             p => p.Slug == slug,
             cancellationToken
         );
@@ -69,7 +69,7 @@ public sealed class ProjectsController(AppDbContext dbContext) : ControllerBase
             Completed = request.Completed
         };
         // save to database
-        dbContext.Projects.Add(project);
+        dbContext.Project.Add(project);
         await dbContext.SaveChangesAsync(cancellationToken);
         // return the created project
         var response = ToResponse(project);

@@ -5,7 +5,7 @@ namespace aetherport.api.Data;
 
 public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-    public DbSet<Project> Projects => Set<Project>();
+    public DbSet<Project> Project => Set<Project>();
     public DbSet<Tag> Tags => Set<Tag>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -14,6 +14,8 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbCon
 
         modelBuilder.Entity<Project>(entity =>
         {
+            entity.ToTable("Projects");
+
             entity.HasKey(p => p.Id);
 
             entity.Property(p => p.Title)
