@@ -11,7 +11,7 @@ namespace aetherport.api.Controllers;
 public sealed class ProjectsController(AppDbContext dbContext) : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ResponseProject>>> GetAllProjects(
+    public async Task<ActionResult<IReadOnlyList<ResponseProject>>> GetAllProjects(
         CancellationToken cancellationToken)
     {
         var projects = await dbContext.Projects
