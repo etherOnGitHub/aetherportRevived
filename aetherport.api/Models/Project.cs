@@ -1,14 +1,14 @@
 namespace aetherport.api.Models;
 
-public class Project 
+public sealed class Project 
 {
     public int Id { get; set; }
-    public required string Title { get; set; } = null!;
-    public required string Slug { get; set; } = null!;
-    public string Description { get; set; } = null!;
-    public List<Tag> Tags { get; set; } = new List<Tag>();
-    public List<string> Images { get; set; } = new List<string>();
-    public List<string> Links { get; set; } = new List<string>();
+    public required string Title { get; set; }
+    public required string Slug { get; set; }
+    public required string Description { get; set; }
+    public ICollection<Tag> Tags { get; set; } = [];
+    public ICollection<string> Images { get; set; } = [];
+    public ICollection<string> Links { get; set; } = [];
     public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
     public DateTimeOffset UpdatedAt { get; set; } = DateTimeOffset.UtcNow;
 }
