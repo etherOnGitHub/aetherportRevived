@@ -6,6 +6,6 @@ public sealed record ResponseProject(
     string Slug,
     string Description,
     bool Completed,
-    DateTimeOffset CreatedAt,
-    DateTimeOffset UpdatedAt
+    DateTime CreatedAt,
+    DateTime UpdatedAt
 );

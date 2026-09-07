@@ -10,6 +10,6 @@ public sealed class Project
     public ICollection<Tag> Tags { get; set; } = [];
     public ICollection<string> Images { get; set; } = [];
     public ICollection<string> Links { get; set; } = [];
-    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
-    public DateTimeOffset UpdatedAt { get; set; } = DateTimeOffset.UtcNow;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 }
