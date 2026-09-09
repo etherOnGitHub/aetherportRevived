@@ -87,9 +87,12 @@ public sealed class ProjectsController(AppDbContext dbContext) : ControllerBase
                 project.Title,
                 project.Slug,
                 project.Description,
-                project.Completed,
+                project.Tags.Select(t => t.Name).ToList(),
+                project.Images.ToList(),
+                project.Links.ToList(),
                 project.CreatedAt,
-                project.UpdatedAt
+                project.UpdatedAt,
+                project.Completed
             );
         }
 }
